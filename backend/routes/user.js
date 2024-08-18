@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const  { authMiddleware } = require("../middleware");
 
+
 const signupBody = zod.object({
     username: zod.string().email(),
 	firstName: zod.string(),
@@ -18,8 +19,9 @@ const signupBody = zod.object({
 router.post("/signup", async (req, res) => {
     const { success } = signupBody.safeParse(req.body)
     if (!success) {
+        console.error("Incorrect format!");
         return res.status(411).json({
-            message: "Email already taken / Incorrect inputs"
+            message: " Incorrect inputs hai shai kro"
         })
     }
 
